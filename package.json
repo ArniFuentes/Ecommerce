@@ -1,0 +1,24 @@
+{
+  "name": "backend-programming",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "ProductManager.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArniFuentes/Ecommerce-NodeJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArniFuentes/Ecommerce-NodeJS/issues"
+  },
+  "homepage": "https://github.com/ArniFuentes/Ecommerce-NodeJS#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
