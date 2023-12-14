@@ -1,5 +1,5 @@
 // Importar el módulo 'fs' para operaciones en el sistema de archivos.
-import * as fs from 'fs';
+const fs = require('fs');
 
 
 // Clase ProductManager para gestionar productos.
@@ -8,50 +8,61 @@ class ProductManager {
   constructor() {
     // Ruta al archivo JSON que almacena los datos de los productos.
     this.path = "Productos.json";
-    // ID inicial para nuevos productos.
-    this.id = 1;
+    // Obtener la lista actual de productos.
+    this.products = this.getProducts();
+    // Calcular el próximo ID disponible.
+    this.id = this.calculateNextId();
   }
 
-  // Método asíncrono para agregar un nuevo producto a la lista.
-  async addProduct(title, description, price, thumbnail, code, stock) {
+
+  // Método para calcular el próximo ID disponible (encuentra el ID máximo actual)
+  calculateNextId() {
+    // 0 es el valor inicial de max. Si el id actual es mayor queda como max
+    const maxId = this.products.reduce((max, product) => (product.id > max ? product.id : max), 0);
+    return maxId;
+  }
+
+
+  addProduct({ title, description, code, price, stock, category, thumbnails = [] }) {
     try {
       // Obtener productos existentes desde el archivo.
-      const products = await this.getProducts();
+      const products = this.getProducts();
       // Verificar si hay un código de producto duplicado.
       const duplicateCode = products.some((product) => product.code === code);
 
       if (duplicateCode) {
-        // Lanzar un error si el código está duplicado.
         throw new Error(`El código "${code}" está repetido, no se pudo agregar el producto.`);
       }
 
-      // Crear un nuevo producto con un ID único.
+      // Crear un nuevo producto con un ID único y status por defecto.
       const newProduct = {
-        id: this.id++,
+        id: ++this.id,
         title,
         description,
-        price,
-        thumbnail,
         code,
+        price,
+        status: true,
         stock,
+        category,
+        thumbnails,
       };
 
       // Agregar el nuevo producto a la lista y escribir en el archivo.
       products.push(newProduct);
-      await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
+      fs.writeFileSync(this.path, JSON.stringify(products, null, 2));
       // Devolver un mensaje indicando que el producto se agregó con éxito.
       return "El producto se agregó exitosamente.";
     } catch (error) {
-      // lanzar cualquier error que ocurra durante el proceso.
       throw error;
     }
   }
 
-  // Método asíncrono para obtener la lista de productos.
-  async getProducts() {
+
+  // Método para obtener la lista de productos.
+  getProducts() {
     try {
       // Leer el archivo y esperar la promesa.
-      const data = await fs.promises.readFile(this.path, "utf8");
+      const data = fs.readFileSync(this.path, "utf8");
       // Parsear los datos JSON y devolver la lista de productos.
       const products = JSON.parse(data);
       return products;
@@ -61,12 +72,13 @@ class ProductManager {
     }
   }
 
-  // Método asíncrono para obtener un producto por su ID.
-  async getProductById(id) {
+
+  // Método para obtener un producto por su ID.
+  getProductById(id) {
     try {
       // Obtener la lista de productos.
-      const products = await this.getProducts();
-      // Encontrar el producto con el ID proporcionado.
+      const products = this.getProducts();
+      // Si la callback devuelve true, devolver el producto sino undefined
       const product = products.find((product) => product.id === id);
 
       if (product) {
@@ -82,11 +94,12 @@ class ProductManager {
     }
   }
 
-  // Método asíncrono para actualizar un producto por su ID.
-  async updateProduct(id, title, description, price, thumbnail, code, stock) {
+
+  // Método para actualizar un producto por su ID.
+  updateProduct(id, title, description, price, thumbnail, code, stock) {
     try {
       // Obtener la lista de productos.
-      const products = await this.getProducts();
+      const products = this.getProducts();
       // Encontrar el índice del producto con el ID proporcionado.
       const index = products.findIndex((product) => product.id === id);
 
@@ -106,7 +119,7 @@ class ProductManager {
         stock,
       };
 
-      await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
+      fs.writeFileSync(this.path, JSON.stringify(products, null, 2));
       // Devolver un mensaje indicando que el producto se actualizó con éxito.
       return `El producto con id ${id} se actualizó exitosamente.`;
     } catch (error) {
@@ -115,11 +128,12 @@ class ProductManager {
     }
   }
 
-  // Método asíncrono para eliminar un producto por su ID.
-  async deleteProduct(id) {
+
+  // Método para eliminar un producto por su ID.
+  deleteProduct(id) {
     try {
       // Obtener la lista de productos.
-      const products = await this.getProducts();
+      const products = this.getProducts();
       // Filtrar la lista para excluir el producto con el ID proporcionado.
       const newProductList = products.filter((product) => product.id !== id);
 
@@ -129,7 +143,7 @@ class ProductManager {
       }
 
       // Escribir la nueva lista de productos en el archivo.
-      await fs.promises.writeFile(this.path, JSON.stringify(newProductList, null, 2));
+      fs.writeFileSync(this.path, JSON.stringify(newProductList, null, 2));
       // Devolver un mensaje indicando que el producto se eliminó con éxito.
       return `El producto con id ${id} fue borrado exitosamente.`;
     } catch (error) {
@@ -140,6 +154,4 @@ class ProductManager {
 }
 
 // Exportar la clase ProductManager.
-export default ProductManager;
-
-
+module.exports = ProductManager;
