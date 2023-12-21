@@ -68,5 +68,89 @@
       "url_imagen_1.jpg",
       "url_imagen_2.jpg"
     ]
+  },
+  {
+    "id": 6,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "ABC127777777777777",
+    "price": 44.99,
+    "status": true,
+    "stock": 100,
+    "category": "Electrónicos",
+    "thumbnails": [
+      "url_imagen_1.jpg",
+      "url_imagen_2.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "ABC120000000000000000",
+    "price": 44.99,
+    "status": true,
+    "stock": 100,
+    "category": "Electrónicos",
+    "thumbnails": [
+      "url_imagen_1.jpg",
+      "url_imagen_2.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "ABC120000000000",
+    "price": 44.99,
+    "status": true,
+    "stock": 100,
+    "category": "Electrónicos",
+    "thumbnails": [
+      "url_imagen_1.jpg",
+      "url_imagen_2.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "5545666",
+    "price": 44.99,
+    "status": true,
+    "stock": 100,
+    "category": "Electrónicos",
+    "thumbnails": [
+      "url_imagen_1.jpg",
+      "url_imagen_2.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "554566622",
+    "price": 44.99,
+    "status": true,
+    "stock": 100,
+    "category": "Electrónicos",
+    "thumbnails": [
+      "url_imagen_1.jpg",
+      "url_imagen_2.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "12",
+    "price": 44.99,
+    "status": true,
+    "stock": 100,
+    "category": "Electrónicos",
+    "thumbnails": [
+      "url_imagen_1.jpg",
+      "url_imagen_2.jpg"
+    ]
   }
 ]

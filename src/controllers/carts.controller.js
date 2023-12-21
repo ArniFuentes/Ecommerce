@@ -1,11 +1,14 @@
-const CartManager = require('../CartManager.js');
 const { Router } = require('express');
+const CartManager = require('../CartManager.js');
+const ProductManager = require('../ProductManager.js');
 
 
 const router = Router();
 
 // Instanciar la clase CartManager para gestionar carritos.
 const cartManager = new CartManager();
+// Instanciar la clase ProductManager
+const productManager = new ProductManager();
 
 
 router.post('/', (req, res) => {
@@ -23,7 +26,8 @@ router.get('/:cid', (req, res) => {
   try {
       const cartId = parseInt(req.params.cid);
       const cart = cartManager.getCartById(cartId);
-      res.json({ cartProducts: cart });
+      const cartProducts = cart.products;
+      res.json({ cartProducts: cartProducts });
   } catch (error) {
       res.status(400).json({ error: error.message });
   }
@@ -37,9 +41,7 @@ router.post('/:cid/product/:pid', (req, res) => {
     const productId = parseInt(req.params.pid);
 
     const cart = cartManager.getCartById(cartId);
-    console.log(cart);
     const product = productManager.getProductById(productId);
-    console.log(product);
 
     // Verificar si el producto (el id) ya está en el carrito 
     const existingProduct = cart.products.find((item) => item.product === productId);
@@ -62,4 +64,5 @@ router.post('/:cid/product/:pid', (req, res) => {
 });
 
 
-module.exports = CartManager;
+module.exports = router;
+

@@ -1,10 +1,16 @@
-const app = require('./server');
-
-
-// Definir el puerto en el que la aplicación escuchará las solicitudes.
-const port = 8080;
+// El código dentro de server.js se ejecuta al importar la instancia
+const app = require("./server");
+const { port } = require("./configs/server.config");
+const { Server } = require("socket.io");
 
 // Iniciar el servidor y escuchar en el puerto definido.
-app.listen(port, () => {
+const httpServer = app.listen(port, () => {
   console.log(`El servidor está corriendo en http://localhost:${port}`);
+});
+
+const io = new Server(httpServer);
+
+io.on("connection", (socket) => {
+  console.log(socket.id);
+  socket.on();
 });
