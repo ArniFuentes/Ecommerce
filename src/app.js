@@ -1,4 +1,3 @@
-// El código dentro de server.js se ejecuta al importar la instancia
 const app = require("./server");
 const { port } = require("./configs/server.config");
 const { Server } = require("socket.io");

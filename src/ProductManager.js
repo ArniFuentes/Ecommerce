@@ -1,7 +1,6 @@
 // Importar el módulo 'fs' para operaciones en el sistema de archivos.
 const fs = require('fs');
 
-
 // Clase ProductManager para gestionar productos.
 class ProductManager {
   // Constructor que inicializa la ruta predeterminada y el ID inicial.
@@ -155,5 +154,3 @@ class ProductManager {
 
 // Exportar la clase ProductManager.
 module.exports = ProductManager;
-
-

@@ -1,4 +1,23 @@
-{"scripts": {"start": "node src/app.js"},
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArniFuentes/Ecommerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArniFuentes/Ecommerce/issues"
+  },
+  "homepage": "https://github.com/ArniFuentes/Ecommerce#readme",
   "dependencies": {
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
