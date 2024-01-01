@@ -10,12 +10,20 @@ const httpServer = app.listen(port, () => {
 // asignar el servidor de socket a io
 const io = new Server(httpServer);
 
+const products = [];
+
 // Inicializar el servidor socket con el evento "connection"
 io.on("connection", (socket) => {
   console.log("Cliente conectado");
 
   // Escuchar el evento 'newProduct' del cliente y mostrar los datos en la consola del servidor
   socket.on("newProduct", (data) => {
-    console.log("Nuevo producto recibido en el servidor:", data);
+    // console.log("Nuevo producto recibido en el servidor:", data);
+
+    // Enviar en array con productos
+    products.push(data);
+
+    // Enviar el producto recibido por el servidor a todos los usuarios  conectados
+    io.emit("productAdded", data);
   });
 });

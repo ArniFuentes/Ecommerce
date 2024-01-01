@@ -27,6 +27,9 @@
   <button type="submit">Add Product</button>
 </form>
 
+<!-- Agrega un contenedor para mostrar los datos ingresados -->
+<div id="productDetailsContainer"></div>
+
 <h1>Product List</h1>
 <ul id="productList">
   {{#each products}}
@@ -34,10 +37,6 @@
       <h2>{{title}}</h2>
       <p>Code: {{code}}</p>
       <p>Price: ${{price}}</p>
-      <form action="/products/delete" method="post">
-        <input type="hidden" name="productId" value="{{_id}}" />
-        <button type="submit">Delete</button>
-      </form>
     </li>
   {{/each}}
 </ul>
