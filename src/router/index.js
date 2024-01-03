@@ -10,7 +10,7 @@ const router = (app) => {
   app.use("/api/carts", cartsController);
 
   // Resporder todas las peticiones que llegue a "/"
-  app.use("/home", templatesController);
+  app.use("/", templatesController);
 };
 
 module.exports = router;
