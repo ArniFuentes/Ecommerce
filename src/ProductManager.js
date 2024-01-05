@@ -13,14 +13,12 @@ class ProductManager {
     this.id = this.calculateNextId();
   }
 
-
   // Método para calcular el próximo ID disponible (encuentra el ID máximo actual)
   calculateNextId() {
     // 0 es el valor inicial de max. Si el id actual es mayor queda como max
     const maxId = this.products.reduce((max, product) => (product.id > max ? product.id : max), 0);
     return maxId;
   }
-
 
   addProduct({ title, description, code, price, stock, category, thumbnails = [] }) {
     try {
@@ -56,7 +54,6 @@ class ProductManager {
     }
   }
 
-
   // Método para obtener la lista de productos.
   getProducts() {
     try {
@@ -70,7 +67,6 @@ class ProductManager {
       throw error;
     }
   }
-
 
   // Método para obtener un producto por su ID.
   getProductById(id) {
@@ -92,7 +88,6 @@ class ProductManager {
       throw error;
     }
   }
-
 
   // Método para actualizar un producto por su ID.
   updateProduct(id, title, description, price, thumbnail, code, stock) {
@@ -126,7 +121,6 @@ class ProductManager {
       throw error;
     }
   }
-
 
   // Método para eliminar un producto por su ID.
   deleteProduct(id) {
